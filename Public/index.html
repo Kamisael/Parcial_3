@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat</title>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <h1>Chat</h1>
+  <div>
+    <label for="room">ID de la Sala:</label>
+    <input type="text" id="room">
+  </div>
+  <div>
+    <label for="id">ID:</label>
+    <input type="text" id="Id">
+  </div>
+  <div>
+    <label for="latitud">Latitud:</label>
+    <input type="text" id="latitud">
+  </div>
+  <div>
+    <label for="longitud">Longitud:</label>
+    <input type="text" id="longitud">
+  </div>
+  <button onclick="Mensaje()">Enviar</button>
+
+  <script>
+    function Mensaje() {
+      const socket = io();
+
+      const room = document.getElementById('room').value;
+      const Id = document.getElementById('Id').value;
+      const latitud = document.getElementById('latitud').value;
+      const longitud = document.getElementById('longitud').value;
+
+      const data = {
+        room: room,
+        id: Id,
+        latitud: latitud,
+        longitud: longitud
+      };
+
+      socket.emit('mensaje', data);
+    }
+  </script>
+</body>
+</html>
